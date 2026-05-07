@@ -60,6 +60,41 @@ h1.hero-headline em{font-style:italic;color:var(--c-accent);}
 .hero-support{font-size:13px;color:var(--c-ink-muted);margin-bottom:var(--sp-xl);letter-spacing:0.01em;}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
 
+.hero-highlight{
+  color:#8a278b;
+  position:relative;
+  display:inline-block;
+}
+
+.hero-highlight::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:8px;
+  width:100%;
+  height:10px;
+  background:#ffd84d;
+  z-index:-1;
+  border-radius:999px;
+}
+
+.hero-strike{
+  position:relative;
+  color:rgba(255,255,255,.55);
+  font-style:italic;
+}
+
+.hero-strike::after{
+  content:'';
+  position:absolute;
+  left:-4px;
+  right:-4px;
+  top:52%;
+  height:4px;
+  background:#8a278b;
+  transform:rotate(-2deg);
+  border-radius:999px;
+}
 
 /* TRUST STRIP */
 #trust-strip{background:var(--c-surface);border-top:1px solid var(--c-border);border-bottom:1px solid var(--c-border);padding:20px 0;}
@@ -466,10 +501,81 @@ h1.hero-headline em{font-style:normal;color:#fff;font-weight:500;}
 .hero-btns .btn-outline{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.38);}
 
 /* Trust strip */
-#trust-strip{background:#fff;border-top:none;border-bottom:1px solid rgba(0,0,0,.05);padding:24px 0;}
-.trust-strip-inner{justify-content:space-between;gap:18px;}
-.trust-item{font-size:13px;color:var(--k-muted);font-weight:500;}
-.trust-icon{color:var(--k-purple);}
+#trust-strip{
+  background:linear-gradient(135deg,#7a2180 0%, #9a46a1 100%);
+  padding:28px 0;
+  border:none;
+  position:relative;
+  overflow:hidden;
+}
+
+#trust-strip::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size:16px 16px;
+  opacity:.45;
+}
+
+.trust-strip-inner{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+}
+
+.trust-item{
+  padding:0 28px;
+  border-right:1px solid rgba(255,255,255,.16);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.trust-item:last-child{
+  border-right:none;
+}
+
+.trust-item strong{
+  font-size:42px;
+  line-height:1;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:-0.04em;
+}
+
+.trust-item span{
+  font-size:13px;
+  line-height:1.35;
+  color:rgba(255,255,255,.88);
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  font-weight:600;
+}
+
+@media(max-width:900px){
+  .trust-strip-inner{
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+  }
+
+  .trust-item{
+    border-right:none;
+    padding:0;
+  }
+}
+
+@media(max-width:560px){
+  .trust-strip-inner{
+    grid-template-columns:1fr;
+  }
+
+  .trust-item strong{
+    font-size:34px;
+  }
+}
 
 /* Cards and grids */
 .for-you-grid{grid-template-columns:repeat(5,1fr);gap:22px;}
@@ -1035,6 +1141,405 @@ body{
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
 }
 
+
+
+/* =========================================================
+   PRICING COMPARISON SECTION
+   ========================================================= */
+#pricing{
+  background:linear-gradient(135deg,#fff8ed 0%,#f7edf7 100%);
+  padding:86px 0 78px;
+}
+
+.pricing-compare-head{
+  max-width:920px;
+  margin-bottom:44px;
+}
+
+.pricing-compare-head h2{
+  font-family:var(--f-body);
+  font-size:clamp(38px,5.2vw,72px);
+  font-weight:700;
+  line-height:.98;
+  letter-spacing:-.07em;
+  color:#07101d;
+  margin:0 0 18px;
+}
+
+.pricing-compare-head p{
+  max-width:720px;
+  color:#5f5968;
+  font-size:16px;
+  line-height:1.65;
+}
+
+.pricing-compare-wrap{
+  display:grid;
+  grid-template-columns:1fr 64px 1fr;
+  gap:36px;
+  align-items:center;
+}
+
+.pricing-compare-card{
+  border-radius:18px;
+  padding:36px 38px 34px;
+  min-height:430px;
+  box-shadow:0 26px 70px rgba(52,48,58,.10);
+}
+
+.pricing-compare-card-primary{
+  background:linear-gradient(145deg,#8a278b 0%,#75237c 100%);
+  color:#fff;
+}
+
+.pricing-compare-card-muted{
+  background:#fff;
+  border:1px solid rgba(36,26,42,.08);
+  color:#26303b;
+}
+
+.pricing-card-tag{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:rgba(255,255,255,.78);
+  margin-bottom:14px;
+}
+
+.pricing-compare-card-muted .pricing-card-tag{
+  color:#8a8390;
+}
+
+.pricing-compare-card h3{
+  font-size:clamp(26px,2.8vw,34px);
+  line-height:1.12;
+  letter-spacing:-.05em;
+  margin:0 0 10px;
+  font-weight:700;
+}
+
+.pricing-card-sub{
+  font-size:15px;
+  font-weight:600;
+  margin:0 0 24px;
+  color:rgba(255,255,255,.86);
+}
+
+.pricing-compare-card-muted .pricing-card-sub{
+  color:#76717c;
+}
+
+.pricing-compare-list{
+  list-style:none;
+  display:grid;
+  gap:11px;
+  margin:0;
+  padding:0;
+}
+
+.pricing-compare-list li{
+  position:relative;
+  padding-left:28px;
+  font-size:15px;
+  line-height:1.45;
+  font-weight:600;
+}
+
+.pricing-compare-list-positive li::before{
+  content:'✓';
+  position:absolute;
+  left:0;
+  top:0;
+  color:#ffd84d;
+  font-weight:800;
+}
+
+.pricing-compare-list-muted li{
+  color:#77717d;
+  font-weight:500;
+}
+
+.pricing-compare-list-muted li::before{
+  content:'×';
+  position:absolute;
+  left:0;
+  top:-1px;
+  color:#b9b3bd;
+  font-size:20px;
+  line-height:1;
+}
+
+.pricing-card-divider{
+  height:1px;
+  background:rgba(255,255,255,.18);
+  margin:24px 0 20px;
+}
+
+.pricing-compare-card-muted .pricing-card-divider{
+  background:rgba(36,26,42,.10);
+}
+
+.pricing-card-price-row,
+.market-price-row{
+  display:flex;
+  align-items:flex-end;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.pricing-card-price-row .pricing-card-price{
+  font-size:42px;
+  line-height:.9;
+  font-weight:800;
+  letter-spacing:-.06em;
+  color:#fff;
+}
+
+.pricing-card-price-row .pricing-card-price sup{
+  font-size:18px;
+  margin-right:4px;
+  opacity:.85;
+}
+
+.pricing-card-price-row span,
+.market-price-row span:last-child{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+  font-weight:700;
+  color:rgba(255,255,255,.70);
+  margin-bottom:4px;
+}
+
+.pricing-main-cta{
+  margin-top:22px;
+  background:#ffd84d;
+  color:#342b00;
+  box-shadow:none!important;
+}
+
+.pricing-main-cta:hover{
+  background:#f0c900;
+  color:#342b00;
+}
+
+.market-price{
+  position:relative;
+  display:inline-block;
+  font-size:38px;
+  font-weight:800;
+  letter-spacing:-.05em;
+  color:#8a8390;
+  line-height:1;
+}
+
+.market-price::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  top:52%;
+  height:5px;
+  background:#8a278b;
+  opacity:.7;
+  transform:rotate(-1deg);
+  border-radius:99px;
+}
+
+.market-price-row span:last-child{
+  color:#77717d;
+}
+
+.pricing-vs{
+  font-size:24px;
+  font-weight:800;
+  color:#8a278b;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.pricing-footnote{
+  text-align:center;
+  margin:30px auto 0;
+  max-width:880px;
+  color:#3f3744;
+  font-size:14px;
+  line-height:1.7;
+}
+
+@media(max-width:960px){
+  .pricing-compare-wrap{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  .pricing-vs{
+    order:2;
+  }
+  .pricing-compare-card-muted{
+    order:3;
+  }
+}
+
+@media(max-width:640px){
+  #pricing{padding:64px 0;}
+  .pricing-compare-card{
+    padding:28px 24px;
+    min-height:auto;
+  }
+  .pricing-compare-head h2{
+    font-size:38px;
+  }
+  .pricing-card-price-row .pricing-card-price,
+  .market-price{
+    font-size:34px;
+  }
+}
+
+
+
+/* STATIC TESTIMONIALS — simple non-scrolling cards */
+.testimonials-static-section{
+  background:#ffffff !important;
+  overflow:visible !important;
+}
+
+.testimonials-static-section .testi-section-head{
+  max-width:760px;
+  padding-bottom:0;
+  margin-bottom:30px;
+}
+
+.testimonials-static-section .testi-section-head p{
+  color:#5f5968;
+  font-size:clamp(20px,2vw,28px);
+  line-height:1.42;
+}
+
+.static-testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.static-testimonial-card{
+  background:#fff;
+  border:1px solid rgba(138,39,139,.10);
+  border-radius:20px;
+  padding:30px;
+  min-height:310px;
+  box-shadow:0 18px 48px rgba(52,48,58,.07);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+
+.static-testimonial-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 64px rgba(52,48,58,.11);
+  border-color:rgba(138,39,139,.18);
+}
+
+.static-testimonial-card.featured{
+  background:linear-gradient(180deg,#ffffff 0%,#faf5ff 100%);
+  border-color:rgba(138,39,139,.20);
+}
+
+.static-testimonial-avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8a278b,#c36ac4);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.04em;
+  margin-bottom:24px;
+  box-shadow:0 10px 28px rgba(138,39,139,.22);
+}
+
+.static-testimonial-quote{
+  font-size:16px;
+  line-height:1.65;
+  color:#241a2a;
+  font-weight:500;
+  margin:0 0 30px;
+}
+
+.static-testimonial-meta{
+  border-top:1px solid rgba(138,39,139,.10);
+  padding-top:18px;
+}
+
+.static-testimonial-meta strong{
+  display:block;
+  font-size:15px;
+  color:#241a2a;
+  margin-bottom:3px;
+}
+
+.static-testimonial-meta span{
+  display:block;
+  font-size:12px;
+  color:#8a8390;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+@media(max-width:900px){
+  .static-testimonial-grid{
+    grid-template-columns:1fr;
+  }
+
+  .static-testimonial-card{
+    min-height:auto;
+  }
+}
+
+/* Trust strip typography fix */
+.trust-item{
+  padding:0 24px;
+  justify-content:center;
+  min-height:72px;
+}
+
+.trust-item strong{
+  font-size:clamp(28px,3vw,38px);
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-0.035em;
+  white-space:nowrap;
+}
+
+.trust-item span{
+  font-size:11px;
+  line-height:1.35;
+  letter-spacing:.08em;
+  max-width:150px;
+  text-transform:uppercase;
+}
+
+@media(max-width:900px){
+  .trust-item{
+    min-height:auto;
+  }
+
+  .trust-item span{
+    max-width:none;
+  }
+}
+
+.hero-img-overlay{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.52) 0%,rgba(0,0,0,.24) 42%,rgba(0,0,0,.02) 75%),
+    linear-gradient(0deg,rgba(0,0,0,.04),rgba(0,0,0,.04));
+}
+
 </style>
 </head>
 <body>
@@ -1054,13 +1559,27 @@ body{
 <!-- HERO -->
 <section id="hero">
   <!-- Hero image: man in maroon shirt on grass — eq6EJSdpHUQ -->
-  <img class="hero-img" src="https://images.unsplash.com/photo-1648221350871-e3ae3c8d0f58?w=1600&auto=format&fit=crop&q=85" alt="Genomics and clinical science" loading="eager">
+<img class="hero-img" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&auto=format&fit=crop&q=85" alt="Family health and clinical genomics" loading="eager">
   <div class="hero-img-overlay"></div>
   <div class="hero-content">
     <div class="hero-text">
-      <p class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Karkinos Genetic Test</p>
-      <h1 class="hero-headline">Your Genome.<br><em>Your Future.</em></h1>
-      <p class="hero-sub">The most comprehensive health insight for those who plan ahead.</p>
+     <p class="hero-eyebrow">
+  <span class="hero-eyebrow-dot"></span>
+				  Clinical-grade Whole Genome Sequencing
+				</p>
+
+				<h1 class="hero-headline">
+				  A <span class="hero-highlight">clinical-grade</span><br>
+				  Whole Genome<br>
+				  Sequencing.<br>
+				  Not a <span class="hero-strike">wellness</span><br>
+				  guess.
+				</h1>
+
+				<p class="hero-sub">
+				  Comprehensive clinical genomics designed for inherited risk,
+				  family planning and medication response insights.
+				</p>
       <div class="hero-btns">
         <a href="#final-cta" class="btn btn-primary">Book Free Call</a>
         <a href="learn-more.html" class="btn btn-outline">Learn More</a>
@@ -1076,10 +1595,30 @@ body{
 <div id="trust-strip">
   <div class="container">
     <div class="trust-strip-inner">
-      <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>CAP Accredited Laboratory</div>
-      <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>NABL Certified Standards</div>
-      <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Expert Genetic Counselling Included</div>
-      <div class="trust-item"><svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Private &amp; Secure Data Handling</div>
+      <div class="trust-item">
+  <strong>30×</strong>
+  <span>Clinical-grade sequencing depth</span>
+</div>
+
+<div class="trust-item">
+  <strong>3B</strong>
+  <span>Base pairs analysed</span>
+</div>
+
+<div class="trust-item">
+  <strong>6,200+</strong>
+  <span>Inherited conditions screened</span>
+</div>
+
+<div class="trust-item">
+  <strong>1:1</strong>
+  <span>Genetic counsellor session included</span>
+</div>
+
+<div class="trust-item">
+  <strong>At Home</strong>
+  <span>Sample collection & online counselling</span>
+</div>
     </div>
   </div>
 </div>
@@ -1089,7 +1628,7 @@ body{
 <section class="test-snapshot">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">Test Snapshot</span>
+      <span class="eyebrow">Karkinos Genetic Test Snapshot</span>
       <h2>Whole Genome Sequencing Test</h2>
       <p>The test examines your DNA sequence to identify clinically relevant genetic variants linked to inherited risk, carrier status and medication response.</p>
     </div>
@@ -1151,8 +1690,8 @@ body{
   <div class="container">
     <div class="section-head fade-in">
       <span class="eyebrow">Is This For You?</span>
-      <h2>People Who Choose <em>Clarity</em></h2>
-      <p>Genomic clarity matters at every stage of life. Here are the people who benefit most.</p>
+      <h2>For People Who Want Deeper Health <em>Clarity</em></h2>
+      <p>From family planning to preventive care, whole genome sequencing can support more informed health decisions.</p>
     </div>
     <div class="for-you-grid fade-in">
       <div class="for-you-card">
@@ -1199,89 +1738,41 @@ body{
   </div>
 </section>
 
-<!-- TESTIMONIALS — simple quote-card carousel -->
-<section id="testimonials" class="section-md">
+<!-- TESTIMONIALS — static simple cards -->
+<section id="testimonials" class="section-md testimonials-static-section">
   <div class="container">
     <div class="testi-section-head fade-in">
-      <span class="eyebrow">Patient Stories</span>
-      <p>Short reflections from people who used genetic insights to plan better health and family decisions.</p>
+      <span class="eyebrow">Client Stories</span>
+      <p>Recent reflections from people using genetic insights to make more informed health and family decisions.</p>
     </div>
-  </div>
-  <div class="testimonial-window" aria-label="Patient testimonial carousel">
-    <div class="testimonial-track">
-      <article class="testi-card">
-        <div>
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" alt="Priya A." loading="lazy">
-          <p class="testi-quote">“Before planning our first child, the counselling helped us understand carrier screening in a simple, calm way. It gave us clarity for the next conversation with our doctor.”</p>
-        </div>
-        <div class="testi-meta">
-          <div class="testi-signature">Priya A.</div>
-          <div class="testi-role">Family planning customer</div>
+
+    <div class="static-testimonial-grid fade-in" aria-label="Patient testimonial cards">
+      <article class="static-testimonial-card">
+        <div class="static-testimonial-avatar">PA</div>
+        <p class="static-testimonial-quote">“The Genetic Counselling session helped us understand Carrier Screening before planning our baby. It made the next conversation with our OBGyn much clearer.”</p>
+        <div class="static-testimonial-meta">
+          <strong>Priya A (34, New Delhi)</strong>
+          <span>Family planning</span>
         </div>
       </article>
 
-      <article class="testi-card">
-        <div>
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80" alt="Rahul S." loading="lazy">
-          <p class="testi-quote">“The medication response section was the most useful for me. It gave me a structured report that I could discuss with my physician instead of guessing.”</p>
-        </div>
-        <div class="testi-meta">
-          <div class="testi-signature">Rahul S.</div>
-          <div class="testi-role">PGx customer</div>
+      <article class="static-testimonial-card featured">
+        <div class="static-testimonial-avatar">RS</div>
+        <p class="static-testimonial-quote">“The Pharmacogenomics section was the most useful for me, given my many medications. I had a structured report that I could discuss with my Doctor instead of guessing.”</p>
+        <div class="static-testimonial-meta">
+          <strong>Rahul (51, Mumbai)</strong>
+          <span>Medication response</span>
         </div>
       </article>
 
-      <article class="testi-card">
-        <div>
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80" alt="Meera K." loading="lazy">
-          <p class="testi-quote">“I had a family history that always made me anxious. The post-test counselling helped separate what was medically relevant from what I was only worrying about.”</p>
-        </div>
-        <div class="testi-meta">
-          <div class="testi-signature">Meera K.</div>
-          <div class="testi-role">Inherited risk customer</div>
+      <article class="static-testimonial-card">
+        <div class="static-testimonial-avatar">MK</div>
+        <p class="static-testimonial-quote">“I have a Family history of Cancer that always made me anxious. The post test counselling helped us understand what was relevant and helped me reduce my anxiety.”</p>
+        <div class="static-testimonial-meta">
+          <strong>Meera (41, Bangalore)</strong>
+          <span>Inherited risk</span>
         </div>
       </article>
-
-      <article class="testi-card">
-        <div>
-          <img class="testi-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80" alt="Arjun V." loading="lazy">
-          <p class="testi-quote">“I wanted one serious test rather than scattered wellness checks. The process felt premium, private, and guided throughout.”</p>
-        </div>
-        <div class="testi-meta">
-          <div class="testi-signature">Arjun V.</div>
-          <div class="testi-role">Preventive health customer</div>
-        </div>
-      </article>
-
-      <!-- Duplicate set for seamless loop -->
-      <article class="testi-card"><div><img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" alt="Priya A." loading="lazy"><p class="testi-quote">“Before planning our first child, the counselling helped us understand carrier screening in a simple, calm way. It gave us clarity for the next conversation with our doctor.”</p></div><div class="testi-meta"><div class="testi-signature">Priya A.</div><div class="testi-role">Family planning customer</div></div></article>
-      <article class="testi-card"><div><img class="testi-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80" alt="Rahul S." loading="lazy"><p class="testi-quote">“The medication response section was the most useful for me. It gave me a structured report that I could discuss with my physician instead of guessing.”</p></div><div class="testi-meta"><div class="testi-signature">Rahul S.</div><div class="testi-role">PGx customer</div></div></article>
-      <article class="testi-card"><div><img class="testi-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80" alt="Meera K." loading="lazy"><p class="testi-quote">“I had a family history that always made me anxious. The post-test counselling helped separate what was medically relevant from what I was only worrying about.”</p></div><div class="testi-meta"><div class="testi-signature">Meera K.</div><div class="testi-role">Inherited risk customer</div></div></article>
-      <article class="testi-card"><div><img class="testi-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=120&auto=format&fit=crop&q=80" alt="Arjun V." loading="lazy"><p class="testi-quote">“I wanted one serious test rather than scattered wellness checks. The process felt premium, private, and guided throughout.”</p></div><div class="testi-meta"><div class="testi-signature">Arjun V.</div><div class="testi-role">Preventive health customer</div></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- WHY NOW -->
-<section class="section" id="why-now">
-  <div class="container">
-    <div class="why-now-inner fade-in">
-      <div class="why-now-text">
-        <span class="eyebrow">The Right Time</span>
-        <h3>What Many Families<br>Learn Too Late</h3>
-        <div class="why-now-points">
-          <div class="why-now-point"><span class="why-now-point-dot"></span><p>Hidden inherited risks often remain clinically silent — until they are not.</p></div>
-          <div class="why-now-point"><span class="why-now-point-dot"></span><p>Fertility and carrier answers sometimes arrive only after conception is attempted.</p></div>
-          <div class="why-now-point"><span class="why-now-point-dot"></span><p>Medication response varies significantly by genetics — yet most prescribing still ignores this.</p></div>
-          <div class="why-now-point"><span class="why-now-point-dot"></span><p>Family health history is often understood only after a serious event in the family.</p></div>
-        </div>
-        <p class="why-now-close">Earlier clarity can support better decisions. Karkinos Genetic Test puts that clarity within reach.</p>
-        <a href="#final-cta" class="btn btn-primary" style="margin-top:var(--sp-lg);">Book Free Call</a>
-      </div>
-      <div class="why-now-img">
-        <!-- REPLACE LATER: Elegant family or contemplative couple in premium home setting, warm lighting, aspirational Indian context -->
-        <img src="https://plus.unsplash.com/premium_photo-1678000616456-fb837dea2776?w=700&auto=format&fit=crop&q=80" alt="Family planning with clarity" loading="lazy">
-      </div>
     </div>
   </div>
 </section>
@@ -1306,7 +1797,7 @@ body{
         </thead>
         <tbody>
           <tr><td class="row-label">Whole Genome Coverage</td><td class="highlight"><span class="check">✓</span> Full 3B+ base pairs</td><td><span class="cross">✗</span> Selected SNPs only</td><td><span class="partial">~</span> Targeted regions</td></tr>
-          <tr><td class="row-label">Clinical Focus</td><td class="highlight"><span class="check">✓</span> Medically validated</td><td><span class="cross">✗</span> Wellness / ancestry</td><td><span class="check">✓</span> Condition-specific</td></tr>
+          <tr><td class="row-label">Clinical Focus</td><td class="highlight"><span class="check">✓</span> CAP certified WGS</td><td><span class="cross">✗</span> Wellness / ancestry</td><td><span class="check">✓</span> Condition-specific</td></tr>
           <tr><td class="row-label">Expert Counselling Included</td><td class="highlight"><span class="check">✓</span> Pre &amp; post session</td><td><span class="cross">✗</span> Not included</td><td><span class="partial">~</span> Sometimes available</td></tr>
           <tr><td class="row-label">Family Planning Relevance</td><td class="highlight"><span class="check">✓</span> Carrier screening included</td><td><span class="cross">✗</span> Not clinically relevant</td><td><span class="partial">~</span> Limited scope</td></tr>
           <tr><td class="row-label">Medication Response (PGx)</td><td class="highlight"><span class="check">✓</span> Full PGx analysis</td><td><span class="cross">✗</span> Not included</td><td><span class="cross">✗</span> Usually not included</td></tr>
@@ -1372,23 +1863,22 @@ body{
   <div class="accreditation-slider" aria-label="Karkinos accreditations and standards">
     <div class="accreditation-track">
       <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/cap-accreditation-logo.png" alt="CAP Accreditation" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/Group-1597883713.png" alt="Accreditation logo" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/Group-1597883712.png" alt="Accreditation logo" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/NABH-accredited-logo.png" alt="NABH Accredited" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/nabl-1.png" alt="NABL" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/DSIR.png" alt="DSIR" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/SOC-2-Type-2.png" alt="SOC 2 Type 2" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/HIMSS-LOGO-01.png" alt="HIMSS" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/fhir-logo-www.png" alt="FHIR" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/cap-accreditation-logo.png" alt="CAP Accreditation" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/Group-1597883713.png" alt="Accreditation logo" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/Group-1597883712.png" alt="Accreditation logo" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/NABH-accredited-logo.png" alt="NABH Accredited" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/nabl-1.png" alt="NABL" loading="lazy"></div>
 <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/DSIR.png" alt="DSIR" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/SOC-2-Type-2.png" alt="SOC 2 Type 2" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/HIMSS-LOGO-01.png" alt="HIMSS" loading="lazy"></div>
-<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/fhir-logo-www.png" alt="FHIR" loading="lazy"></div>
+ <div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/cap-accreditation-logo.png" alt="CAP Accreditation" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/NABH-accredited-logo.png" alt="NABH Accredited" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/nabl-1.png" alt="NABL" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/DSIR.png" alt="DSIR" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/cap-accreditation-logo.png" alt="CAP Accreditation" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/NABH-accredited-logo.png" alt="NABH Accredited" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/nabl-1.png" alt="NABL" loading="lazy"></div>
+<div class="accreditation-logo"><img src="https://www.karkinos.in/wp-content/uploads/2025/08/DSIR.png" alt="DSIR" loading="lazy"></div>
+
 
     </div>
   </div>
@@ -1397,47 +1887,63 @@ body{
 <!-- PRICING -->
 <section class="section" id="pricing">
   <div class="container">
-    <div class="section-head fade-in">
+    <div class="pricing-compare-head fade-in">
       <span class="eyebrow">Investment</span>
-      <h2>A One-Time Investment<br>in <em>Clinical Clarity</em></h2>
+      <h2>Most “DNA tests” sample your genome.<br>We read all of it.</h2>
+      <p>Compare the Karkinos Genetic Test with prevalent exome, panel and lifestyle-oriented genetic tests in the market.</p>
     </div>
-    <div class="pricing-inner fade-in">
-      <div class="pricing-card">
-        <div class="pricing-card-top">
-          <p class="pricing-card-eyebrow">Complete Package</p>
-          <h3>Whole Genome Sequencing</h3>
+
+    <div class="pricing-compare-wrap fade-in">
+      <div class="pricing-compare-card pricing-compare-card-primary">
+        <div class="pricing-card-tag">Karkinos Genetic Test</div>
+        <h3>Whole Genome Sequencing</h3>
+        <p class="pricing-card-sub">100% of your DNA · 30× depth</p>
+
+        <ul class="pricing-compare-list pricing-compare-list-positive">
+          <li>Reads all 3 billion base pairs</li>
+          <li>Detects rare and novel variants</li>
+          <li>6,200+ inherited conditions screened</li>
+          <li>Pharmacogenomics included</li>
+          <li>Reviewed by clinical experts</li>
+          <li>1:1 counsellor walkthrough</li>
+        </ul>
+
+        <div class="pricing-card-divider"></div>
+
+        <div class="pricing-card-price-row">
           <div class="pricing-card-price"><sup>₹</sup>25,000</div>
-          <p class="pricing-card-note">One-time &nbsp;·&nbsp; Counselling included</p>
+          <span>All-inclusive</span>
         </div>
-        <div class="pricing-card-body">
-          <p class="pricing-includes">What's included</p>
-          <ul class="pricing-list">
-            <li>Free pre-test expert consultation</li>
-            <li>Home blood sample collection</li>
-            <li>30× Whole Genome Sequencing</li>
-            <li>Clinical genomics report</li>
-            <li>Post-test counselling session</li>
-            <li>Result explanation with expert guidance</li>
-            <li>Premium coordination support throughout</li>
-          </ul>
-        </div>
-        <div class="pricing-card-cta">
-          <a href="#final-cta" class="btn btn-accent" style="width:100%;text-align:center;display:block;">Book Free Call</a>
-        </div>
+
+        <a href="#final-cta" class="btn btn-accent pricing-main-cta">Book Free Call</a>
       </div>
-      <div class="pricing-note-col">
-        <h3>A one-time investment in deeper clinical understanding</h3>
-        <p class="pricing-context">Comparable to many executive health packages — but focused on deeper genetic insight, not routine annual screening.</p>
-        <p>Unlike panel tests that look at a narrow set of variants, whole genome sequencing examines over 3 billion base pairs to generate a clinically meaningful view of inherited risk, carrier status, and medication response.</p>
-        <p>The package is designed to be clear and guided: sample collection, sequencing, report generation, and expert counselling are included. Any future interpretation or additional analysis can be discussed separately based on clinical relevance and your consent.</p>
-        <div class="value-points">
-          <div class="value-point"><h5>30× Coverage</h5><p>Each base pair read 30 times for clinical accuracy</p></div>
-          <div class="value-point"><h5>No Subscription</h5><p>One package price with no recurring membership fee</p></div>
-          <div class="value-point"><h5>Expert Review</h5><p>Human clinical review — not automated flags</p></div>
-          <div class="value-point"><h5>Clinically Guided</h5><p>Interpretation support based on validated medical relevance</p></div>
+
+      <div class="pricing-vs">vs</div>
+
+      <div class="pricing-compare-card pricing-compare-card-muted">
+        <div class="pricing-card-tag">Other DNA tests in market</div>
+        <h3>Exome / panels / lifestyle DNA tests</h3>
+        <p class="pricing-card-sub">~1.5% of your DNA · depth often undisclosed</p>
+
+        <ul class="pricing-compare-list pricing-compare-list-muted">
+          <li>Reads only protein-coding or selected regions</li>
+          <li>May miss variants outside the exome or panel</li>
+          <li>Often positioned as wellness / lifestyle</li>
+          <li>Pharmacogenomics may not be included</li>
+          <li>Clinician review may vary</li>
+          <li>Genetic counselling may be limited or absent</li>
+        </ul>
+
+        <div class="pricing-card-divider"></div>
+
+        <div class="market-price-row">
+          <span class="market-price">₹ 80,000+</span>
+          <span>Typical market range</span>
         </div>
       </div>
     </div>
+
+    <p class="pricing-footnote fade-in">WGS reads across the genome. WES and panels focus on limited regions. Inherited disease risk can be present across both coding and non-coding parts of the genome.</p>
   </div>
 </section>
 
@@ -1488,7 +1994,7 @@ body{
         </div>
         <div class="faq-item">
           <button class="faq-q">How long does the process take?<span class="faq-icon"></span></button>
-          <div class="faq-a">Typical turnaround from sample collection to report delivery is communicated during your onboarding consultation. Whole genome sequencing is a thorough clinical process — we do not cut corners for speed.</div>
+          <div class="faq-a">Typical turnaround from sample collection to report delivery is approx 20 working days. The expected report date is communicated during the process. Whole genome sequencing is a thorough clinical process — we do not cut corners for speed.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Is genetic counselling included?<span class="faq-icon"></span></button>
