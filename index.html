@@ -490,7 +490,7 @@ nav{gap:26px;}nav a{font-size:12px;color:#151015;font-weight:500;}nav a:hover{co
 .hero-content{padding-top:120px;padding-bottom:80px;align-items:center;}
 .hero-text{max-width:610px;color:#fff;}
 .hero-eyebrow{color:#fff;margin-bottom:14px;font-size:20px;font-weight:300;text-transform:none;letter-spacing:0;}
-.hero-{background:var(--k-yellow);width:8px;height:8px;}
+.hero-eyebrow-dot{background:var(--k-yellow);width:8px;height:8px;}
 h1.hero-headline{font-family:var(--f-body);font-size:clamp(44px,5vw,66px);font-weight:500;line-height:1.03;letter-spacing:-.045em;color:#fff;margin-bottom:18px;}
 h1.hero-headline em{font-style:normal;color:#fff;font-weight:500;}
 .hero-sub{font-size:17px;line-height:1.65;color:rgba(255,255,255,.88);font-weight:400;max-width:560px;}
@@ -1540,6 +1540,204 @@ body{
     linear-gradient(0deg,rgba(0,0,0,.04),rgba(0,0,0,.04));
 }
 
+/* =========================================================
+   KGT CORPORATE SECTION
+   ========================================================= */
+
+.kgt-corporate-section{
+  padding:78px 0;
+  background:#ffffff;
+}
+
+.kgt-corporate-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  padding:58px 56px;
+  background:linear-gradient(135deg,#7c2383 0%, #5f1f96 100%);
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:48px;
+  box-shadow:0 28px 70px rgba(90,30,120,.18);
+}
+
+.kgt-corporate-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+  background-size:18px 18px;
+  opacity:.45;
+  pointer-events:none;
+}
+
+.kgt-corporate-left,
+.kgt-corporate-right{
+  position:relative;
+  z-index:1;
+}
+
+.kgt-corporate-eyebrow{
+  display:inline-block;
+  margin-bottom:20px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.06em;
+  color:#ffd84d;
+}
+
+.kgt-corporate-left h2{
+  font-size:clamp(34px,4vw,58px);
+  line-height:1.02;
+  letter-spacing:-0.06em;
+  color:#fff;
+  margin:0 0 24px;
+  font-weight:700;
+}
+
+.kgt-corporate-left h2 span{
+  color:#ffd84d;
+}
+
+.kgt-corporate-left p{
+  max-width:620px;
+  color:rgba(255,255,255,.88);
+  font-size:17px;
+  line-height:1.7;
+  margin-bottom:32px;
+}
+
+.kgt-corporate-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  background:#ffd84d;
+  color:#2b2100;
+  text-decoration:none;
+  padding:15px 24px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:700;
+  transition:all .25s ease;
+}
+
+.kgt-corporate-btn span{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:rgba(0,0,0,.10);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+}
+
+.kgt-corporate-btn:hover{
+  transform:translateY(-2px);
+  background:#f3cb32;
+}
+
+.kgt-corporate-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:20px;
+}
+
+.kgt-stat-card,
+.kgt-included-card{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  padding:28px;
+  backdrop-filter:blur(10px);
+}
+
+.kgt-stat-card strong{
+  display:block;
+  font-size:54px;
+  line-height:1;
+  color:#fff;
+  margin-bottom:12px;
+  letter-spacing:-0.06em;
+}
+
+.kgt-stat-card p{
+  color:rgba(255,255,255,.82);
+  font-size:15px;
+  line-height:1.6;
+}
+
+.kgt-included-card h4{
+  color:#ffffff;
+  font-size:15px;
+  letter-spacing:.08em;
+  margin-bottom:18px;
+  font-weight:700;
+}
+
+.kgt-included-card ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:14px;
+}
+
+.kgt-included-card li{
+  position:relative;
+  padding-left:20px;
+  color:rgba(255,255,255,.90);
+  line-height:1.6;
+  font-size:15px;
+}
+
+.kgt-included-card li::before{
+  content:'•';
+  position:absolute;
+  left:0;
+  top:0;
+  color:#ffd84d;
+  font-size:22px;
+  line-height:1;
+}
+
+@media(max-width:960px){
+
+  .kgt-corporate-card{
+    grid-template-columns:1fr;
+    padding:42px 30px;
+  }
+
+  .kgt-corporate-stats{
+    grid-template-columns:1fr;
+  }
+
+  .kgt-corporate-left h2{
+    font-size:42px;
+  }
+}
+
+@media(max-width:640px){
+
+  .kgt-corporate-card{
+    padding:34px 22px;
+    border-radius:22px;
+  }
+
+  .kgt-corporate-left h2{
+    font-size:34px;
+  }
+
+  .kgt-corporate-left p{
+    font-size:15px;
+  }
+
+  .kgt-stat-card strong{
+    font-size:42px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1550,6 +1748,7 @@ body{
     <a href="#" class="logo karkinos-logo"><span class="logo-mark">✣</span>KARKINOS</a>
     <nav>
 	  <a href="learn-more.html">Learn More</a>
+	  <a href="corporate.html">Corporate</a>
 	  <a href="#faq">FAQs</a>
 	  <a href="#final-cta" class="nav-cta">Book Free Call</a>
 	</nav>
@@ -1969,6 +2168,64 @@ clinical genomics infrastructures
   </div>
 </section>
 
+<!-- KGT CORPORATE -->
+<section class="kgt-corporate-section">
+  <div class="container">
+    <div class="kgt-corporate-card fade-in">
+
+      <div class="kgt-corporate-left">
+        <span class="kgt-corporate-eyebrow">KGT FOR CORPORATES</span>
+
+        <h2>
+          Genomic health, built into<br>
+          your <span>employee wellness</span><br>
+          programme.
+        </h2>
+
+        <p>
+          Partner with Karkinos Genetic Test to offer whole genome sequencing,
+          clinical counselling and proactive health insights to your teams.
+          Designed for HR leaders who care about long-term wellbeing — not just
+          annual check-ups.
+        </p>
+
+        <a href="corporate.html" class="kgt-corporate-btn">
+          <span>➜</span>
+          Learn More
+        </a>
+      </div>
+
+      <div class="kgt-corporate-right">
+
+        <div class="kgt-corporate-stats">
+          <div class="kgt-stat-card">
+            <strong>3.5×</strong>
+            <p>Higher early-detection rates compared to standard health check-ups.</p>
+          </div>
+
+          <div class="kgt-stat-card">
+            <strong>20+</strong>
+            <p>Working days, end-to-end — from sample collection to counselled report.</p>
+          </div>
+        </div>
+
+        <div class="kgt-included-card">
+          <h4>WHAT IS INCLUDED</h4>
+
+          <ul>
+            <li>Whole genome sequencing for enrolled employees</li>
+            <li>Pre-test and post-result genetic counselling</li>
+            <li>Confidential, clinician-reviewed reports</li>
+            <li>Volume pricing and onsite sample collection</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="section" id="faq">
   <div class="container">
@@ -2110,6 +2367,8 @@ clinical genomics infrastructures
 </div>
 
 <!-- FLOATING WHATSAPP -->
+<div class="float-cta">
+  <!-- FLOATING WHATSAPP -->
 <div class="float-cta">
   <a 
     href="https://wa.me/918591968377?text=Hi%20Karkinos%20Team%2C%20I%20would%20like%20to%20understand%20the%20Karkinos%20Genetic%20Test."
